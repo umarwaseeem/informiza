@@ -8,7 +8,7 @@ class News {
   final num? time;
 
   News({
-    required this.id, 
+    required this.id,
     required this.title,
     required this.path,
     required this.description,

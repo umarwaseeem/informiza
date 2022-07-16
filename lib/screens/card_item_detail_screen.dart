@@ -23,11 +23,45 @@ class CardItemDetail extends StatelessWidget {
       ),
     );
 
-    var text = Text(
+    var appBarTile = Text(
       loadedNewsItemDetail.title.toString(),
+      style: const TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 25,
+      ),
+    );
+
+    var newsReadingTime = Text(
+      "${loadedNewsItemDetail.time.toString()} mins",
       style: const TextStyle(
         color: Colors.black,
         fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    );
+    var appBarBottomLine = Align(
+      alignment: Alignment.bottomRight,
+      child: Container(
+        width: double.infinity,
+        height: 70,
+        color: Colors.grey,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const Icon(Icons.timelapse_rounded),
+            const SizedBox(width: 5),
+            newsReadingTime,
+            const SizedBox(width: 5),
+          ],
+        ),
+      ),
+    );
+    var newsDescription = Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Text(
+        loadedNewsItemDetail.description.toString(),
+        style: const TextStyle(fontSize: 20),
       ),
     );
 
@@ -35,15 +69,32 @@ class CardItemDetail extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: text,
+            elevation: 20,
             expandedHeight: 300,
             pinned: true,
-            flexibleSpace: heroImage,
+            flexibleSpace: Stack(
+              children: [
+                heroImage,
+                FlexibleSpaceBar(
+                  title: appBarTile,
+                  background: appBarBottomLine,
+                ),
+              ],
+            ),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                const SizedBox(height: 2000),
+                Container(
+                  padding: const EdgeInsetsDirectional.all(10),
+                  height: 1000,
+                  child: newsDescription,
+                ),
+                Container(
+                  padding: const EdgeInsetsDirectional.all(10),
+                  height: 1000,
+                  color: Colors.grey,
+                ),
               ],
             ),
           ),
