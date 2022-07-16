@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_informiza/providers/news.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/card_item.dart';
 import '../widgets/my_drawer.dart';
@@ -8,6 +10,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final newsData = Provider.of<NewsItems>(context).items;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Daily Feed"),
@@ -20,13 +24,13 @@ class Home extends StatelessWidget {
         ],
       ),
       drawer: const MyDrawer(),
-      body: ListView(
-        
-        children: const [
-          CardItem(imagePath: "assets/images/logo1.png"),
-          CardItem(imagePath: "assets/images/news1.jpg"),
-          CardItem(imagePath: "assets/images/news2.jpg"),
-        ],
+      body: ListView.builder(
+        itemCount: newsData.length,
+        itemBuilder: (context, index) => CardItem(
+          newsId: newsData[index].id.toString(),
+          imagePath: newsData[index].path.toString(),
+          title: newsData[index].title.toString(),
+        ),
       ),
     );
   }

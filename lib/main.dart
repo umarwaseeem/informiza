@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_informiza/providers/news.dart';
 import 'package:news_informiza/screens/home.dart';
+import 'package:provider/provider.dart';
 
 import 'screens/card_item_detail_screen.dart';
 
@@ -13,17 +15,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'INFORMIZA ',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NewsItems()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'INFORMIZA ',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: const Home(),
+        routes: {
+          CardItemDetail.routeName: (context) => const CardItemDetail(),
+        },
       ),
-      home: const Home(),
-      routes: {
-        CardItemDetail.routeName: (context) => const CardItemDetail(
-            imagePath: "assets/images/logo1.png", title: "haha"),
-      },
     );
   }
 }
