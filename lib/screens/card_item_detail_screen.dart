@@ -19,44 +19,10 @@ class CardItemDetail extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         loadedNewsItemDetail.path.toString(),
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
       ),
     );
 
-    var appBarTile = Text(
-      loadedNewsItemDetail.title.toString(),
-      style: const TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 25,
-      ),
-    );
-
-    var newsReadingTime = Text(
-      "${loadedNewsItemDetail.time.toString()} mins",
-      style: const TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-        fontSize: 20,
-      ),
-    );
-    var appBarBottomLine = Align(
-      alignment: Alignment.bottomRight,
-      child: Container(
-        width: double.infinity,
-        height: 70,
-        color: Colors.grey,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            const Icon(Icons.timelapse_rounded),
-            const SizedBox(width: 5),
-            newsReadingTime,
-            const SizedBox(width: 5),
-          ],
-        ),
-      ),
-    );
     var newsDescription = Padding(
       padding: const EdgeInsets.all(15.0),
       child: Text(
@@ -65,10 +31,44 @@ class CardItemDetail extends StatelessWidget {
       ),
     );
 
+    var titleAndTime = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          loadedNewsItemDetail.title.toString(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        ),
+        Row(
+          children: [
+            const Icon(
+              Icons.timelapse,
+              color: Colors.white,
+              size: 15,
+            ),
+            const SizedBox(width: 5),
+            Text(
+              "${loadedNewsItemDetail.time.toString()} mins",
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(width: 5),
+          ],
+        ),
+      ],
+    );
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            
             elevation: 20,
             expandedHeight: 300,
             pinned: true,
@@ -76,8 +76,11 @@ class CardItemDetail extends StatelessWidget {
               children: [
                 heroImage,
                 FlexibleSpaceBar(
-                  title: appBarTile,
-                  background: appBarBottomLine,
+                  expandedTitleScale: 1.45,
+                  background: Container(
+                    color: Colors.black26,
+                  ),
+                  title: titleAndTime,
                 ),
               ],
             ),
@@ -87,12 +90,13 @@ class CardItemDetail extends StatelessWidget {
               [
                 Container(
                   padding: const EdgeInsetsDirectional.all(10),
-                  height: 1000,
+                  height: 500,
+                  color: Colors.amberAccent,
                   child: newsDescription,
                 ),
                 Container(
                   padding: const EdgeInsetsDirectional.all(10),
-                  height: 1000,
+                  height: 500,
                   color: Colors.grey,
                 ),
               ],
