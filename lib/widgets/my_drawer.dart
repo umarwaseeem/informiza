@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_informiza/screens/settings_screen.dart';
 import 'package:news_informiza/widgets/drawer_item.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -31,12 +32,24 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
           ),
-          const DrawerItem(icon: Icons.home, title: "Home - Your Feed"),
+          const DrawerItem(
+            icon: Icons.home,
+            title: "Home - Your Feed",
+            destination: SettingsScreen.routeName,
+          ),
           const Divider(),
-          const DrawerItem(icon: Icons.abc, title: "Set Preferences"),
+          const DrawerItem(
+            icon: Icons.abc,
+            title: "Set Preferences",
+            destination: SettingsScreen.routeName,
+          ),
           const Divider(),
           Expanded(child: Container()),
-          const DrawerItem(title: "Settings", icon: Icons.settings),
+          const DrawerItem(
+            title: "Settings",
+            icon: Icons.settings,
+            destination: SettingsScreen.routeName,
+          ),
         ],
       ),
     );

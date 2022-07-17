@@ -4,6 +4,7 @@ import 'package:news_informiza/screens/home.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/card_item_detail_screen.dart';
+import 'screens/settings_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         home: const Home(),
         routes: {
           CardItemDetail.routeName: (context) => const CardItemDetail(),
+          SettingsScreen.routeName: (context) => const SettingsScreen(),
         },
       ),
     );
