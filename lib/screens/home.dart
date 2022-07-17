@@ -16,10 +16,18 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Your Daily Feed"),
         actions: [
-          IconButton(
+          TextButton(
+            style: TextButton.styleFrom(
+              primary: Colors.white,
+            ),
+            child: Row(
+              children: const [
+                Text("Refresh"),
+                Icon(Icons.refresh),
+              ],
+            ),
             // - refresh button
             onPressed: () {},
-            icon: const Icon(Icons.refresh),
           ),
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:news_informiza/screens/home.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/card_item_detail_screen.dart';
+import 'screens/preferences_screen.dart';
 import 'screens/settings_screen.dart';
 
 void main() {
@@ -23,13 +24,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'INFORMIZA ',
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+        ),
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
+        themeMode: ThemeMode.dark,
         home: const Home(),
         routes: {
           CardItemDetail.routeName: (context) => const CardItemDetail(),
           SettingsScreen.routeName: (context) => const SettingsScreen(),
+          PreferencesScreen.routeName: (context) => const PreferencesScreen(),
         },
       ),
     );

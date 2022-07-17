@@ -56,6 +56,11 @@ class CardItem extends StatelessWidget {
     );
 
     return Dismissible(
+      movementDuration: const Duration(seconds: 1),
+      dismissThresholds: const {
+        DismissDirection.endToStart: 0.5,
+        DismissDirection.startToEnd: 1,
+      },
       // direction: DismissDirection.endToStart,
       background: Container(
         margin: const EdgeInsets.all(10),
@@ -69,7 +74,13 @@ class CardItem extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Icon(Icons.delete_sweep_rounded),
+            Row(
+              children: const [
+                Text("Swipe left to delete "),
+                SizedBox(width: 10),
+                Icon(Icons.delete_sweep_rounded),
+              ],
+            ),
           ],
         ),
       ),
@@ -87,7 +98,7 @@ class CardItem extends StatelessWidget {
               .pushNamed(CardItemDetail.routeName, arguments: newsId);
         },
         child: SizedBox(
-          height: 200,
+          height: 190,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),

@@ -42,6 +42,22 @@ class NewsItems with ChangeNotifier {
           "This is a sample news item 2, This is a sample news item 2, This is a sample news item 2",
       time: 4,
     ),
+    News(
+      id: DateTime.now().toString(),
+      title: "News 2",
+      path: "assets/images/news2.jpg",
+      description:
+          "This is a sample news item 2, This is a sample news item 2, This is a sample news item 2",
+      time: 4,
+    ),
+    News(
+      id: DateTime.now().toString(),
+      title: "News 2",
+      path: "assets/images/news2.jpg",
+      description:
+          "This is a sample news item 2, This is a sample news item 2, This is a sample news item 2",
+      time: 4,
+    ),
   ];
 
 // ~......................................

@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:news_informiza/screens/settings_screen.dart';
 import 'package:news_informiza/widgets/drawer_item.dart';
 
+import '../screens/preferences_screen.dart';
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.lightGreenAccent,
+      backgroundColor: Colors.grey,
       child: Column(
         children: [
           Container(
             height: 180,
             width: double.infinity,
-            color: Colors.green,
+            color: Colors.black38,
             child: Row(
               children: const [
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundColor: Colors.lightGreenAccent,
+                    backgroundColor: Colors.white,
                   ),
                 ),
                 SizedBox(width: 10),
@@ -41,7 +43,7 @@ class MyDrawer extends StatelessWidget {
           const DrawerItem(
             icon: Icons.abc,
             title: "Set Preferences",
-            destination: SettingsScreen.routeName,
+            destination: PreferencesScreen.routeName,
           ),
           const Divider(),
           Expanded(child: Container()),
