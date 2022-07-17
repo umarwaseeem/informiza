@@ -63,18 +63,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  ListTile settingTile(String title, String sub1, String sub2, bool isSwitch,
+  Container settingTile(String title, String sub1, String sub2, bool isSwitch,
       void Function(bool) change) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      title: Text(title),
-      subtitle: isSwitch ? Text(sub1) : Text(sub2),
-      trailing: Switch(
-        activeColor: Colors.green,
-        inactiveTrackColor: Colors.red[300],
-        inactiveThumbColor: Colors.red[700],
-        value: isSwitch,
-        onChanged: change,
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 3),
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        title: Text(title),
+        subtitle: isSwitch ? Text(sub1) : Text(sub2),
+        trailing: Switch(
+          activeColor: Colors.green,
+          inactiveTrackColor: Colors.red[300],
+          inactiveThumbColor: Colors.red[700],
+          value: isSwitch,
+          onChanged: change,
+        ),
       ),
     );
   }
