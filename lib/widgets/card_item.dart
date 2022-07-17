@@ -6,35 +6,106 @@ class CardItem extends StatelessWidget {
   final String imagePath;
   final String title;
   final String newsId;
+  final String description;
+  final String time;
 
-  const CardItem(
-      {Key? key,
-      required this.imagePath,
-      required this.title,
-      required this.newsId})
-      : super(key: key);
+  const CardItem({
+    Key? key,
+    required this.imagePath,
+    required this.title,
+    required this.newsId,
+    required this.description,
+    required this.time,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          CardItemDetail.routeName,
-          arguments: newsId,
-        );
-      },
-      child: SizedBox(
-        height: 270,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          elevation: 10,
-          color: Colors.grey,
+    var cardImage = SizedBox(
+      height: double.infinity,
+      width: 200,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
           child: Hero(
             tag: newsId,
-            child: Image.asset(imagePath, fit: BoxFit.fill),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    var titleText = Text(
+      title,
+      style: const TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+
+    var descriptionText = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: Text(description),
+    );
+
+    return Dismissible(
+      // direction: DismissDirection.endToStart,
+      background: Container(
+        margin: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "$time minutes story",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Icon(Icons.delete_sweep_rounded),
+          ],
+        ),
+      ),
+      onDismissed: (direction) {
+        if (direction == DismissDirection.endToStart) {
+          // delete
+        } else if (direction == DismissDirection.startToEnd) {
+          return;
+        }
+      },
+      key: Key(newsId),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context)
+              .pushNamed(CardItemDetail.routeName, arguments: newsId);
+        },
+        child: SizedBox(
+          height: 200,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            margin: const EdgeInsets.all(10),
+            color: Colors.grey,
+            elevation: 20,
+            child: Row(
+              children: [
+                cardImage,
+                Expanded(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      titleText,
+                      const SizedBox(height: 10),
+                      descriptionText,
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -22,21 +22,24 @@ class NewsItems with ChangeNotifier {
       id: DateTime.now().toString(),
       title: "Logo",
       path: "assets/images/logo1.png",
-      description: "This is a sample logo",
+      description:
+          "This is a sample logo, this is a transparent logo, this is a green logo",
       time: 2,
     ),
     News(
       id: DateTime.now().toString(),
       title: "News 1",
       path: "assets/images/news1.jpg",
-      description: "This is a sample news item 1",
+      description:
+          "This is a sample news item 1, This is a sample news item 1, This is a sample news item 1",
       time: 3,
     ),
     News(
       id: DateTime.now().toString(),
       title: "News 2",
       path: "assets/images/news2.jpg",
-      description: "This is a sample news item 2",
+      description:
+          "This is a sample news item 2, This is a sample news item 2, This is a sample news item 2",
       time: 4,
     ),
   ];

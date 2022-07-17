@@ -68,18 +68,14 @@ class CardItemDetail extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            
             elevation: 20,
             expandedHeight: 300,
             pinned: true,
             flexibleSpace: Stack(
               children: [
-                heroImage,
                 FlexibleSpaceBar(
                   expandedTitleScale: 1.45,
-                  background: Container(
-                    color: Colors.black26,
-                  ),
+                  background: heroImage,
                   title: titleAndTime,
                 ),
               ],
