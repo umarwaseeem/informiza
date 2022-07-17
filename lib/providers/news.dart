@@ -63,6 +63,12 @@ class NewsItems with ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteNewsItem(String id) {
+    final index = _items.indexWhere((element) => element.id == id);
+
+    _items.removeAt(index);
+  }
+
   News findById(String id) {
     return _items.firstWhere((element) => element.id == id);
   }

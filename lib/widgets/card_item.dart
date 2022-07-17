@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/news.dart';
 import '../screens/card_item_detail_screen.dart';
 
 class CardItem extends StatelessWidget {
@@ -20,6 +22,8 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final newsData = Provider.of<NewsItems>(context, listen: false);
+
     var cardImage = SizedBox(
       height: double.infinity,
       width: 200,
@@ -71,7 +75,7 @@ class CardItem extends StatelessWidget {
       ),
       onDismissed: (direction) {
         if (direction == DismissDirection.endToStart) {
-          // delete
+          newsData.deleteNewsItem(newsId);
         } else if (direction == DismissDirection.startToEnd) {
           return;
         }
@@ -90,7 +94,7 @@ class CardItem extends StatelessWidget {
             ),
             margin: const EdgeInsets.all(10),
             color: Colors.grey,
-            elevation: 20,
+            elevation: 10,
             child: Row(
               children: [
                 cardImage,

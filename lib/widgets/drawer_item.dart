@@ -18,7 +18,11 @@ class DrawerItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ListTile(
         onTap: () {
-          Navigator.of(context).pushNamed(destination);
+          if (destination != "-") {
+            Navigator.of(context).pushNamed(destination);
+          } else {
+            Navigator.of(context).pop();
+          }
         },
         title: Text(title),
         leading: Icon(icon),

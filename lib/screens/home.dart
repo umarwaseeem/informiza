@@ -26,13 +26,15 @@ class Home extends StatelessWidget {
       drawer: const MyDrawer(),
       body: ListView.builder(
         itemCount: newsData.length,
-        itemBuilder: (context, index) => CardItem(
-          time: newsData[index].time.toString(),
-          description: newsData[index].description.toString(),
-          newsId: newsData[index].id.toString(),
-          imagePath: newsData[index].path.toString(),
-          title: newsData[index].title.toString(),
-        ),
+        itemBuilder: (context, index) {
+          return CardItem(
+            time: newsData[index].time.toString(),
+            description: newsData[index].description.toString(),
+            newsId: newsData[index].id.toString(),
+            imagePath: newsData[index].path.toString(),
+            title: newsData[index].title.toString(),
+          );
+        },
       ),
     );
   }

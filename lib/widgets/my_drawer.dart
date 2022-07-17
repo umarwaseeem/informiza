@@ -35,7 +35,7 @@ class MyDrawer extends StatelessWidget {
           const DrawerItem(
             icon: Icons.home,
             title: "Home - Your Feed",
-            destination: SettingsScreen.routeName,
+            destination: "-",
           ),
           const Divider(),
           const DrawerItem(
