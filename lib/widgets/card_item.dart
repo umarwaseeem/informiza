@@ -55,32 +55,41 @@ class CardItem extends StatelessWidget {
       child: Text(description),
     );
 
+    var timeText = Align(
+      alignment: Alignment.topLeft,
+      child: Container(
+        margin: const EdgeInsets.only(left: 25, top: 10),
+        alignment: Alignment.center,
+        height: 20,
+        width: 80,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+        ),
+        child: Text(
+          "$time minutes",
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
     return Dismissible(
       movementDuration: const Duration(seconds: 1),
       dismissThresholds: const {
         DismissDirection.endToStart: 0.5,
-        DismissDirection.startToEnd: 1,
       },
-      // direction: DismissDirection.endToStart,
+      direction: DismissDirection.endToStart,
       background: Container(
         margin: const EdgeInsets.all(10),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "$time minutes story",
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Row(
-              children: const [
-                Text("Swipe left to delete "),
-                SizedBox(width: 10),
-                Icon(Icons.delete_sweep_rounded),
-              ],
-            ),
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [
+            Text("Swipe left to delete "),
+            SizedBox(width: 10),
+            Icon(Icons.delete_sweep_rounded),
           ],
         ),
       ),
@@ -92,37 +101,46 @@ class CardItem extends StatelessWidget {
         }
       },
       key: Key(newsId),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.of(context)
-              .pushNamed(CardItemDetail.routeName, arguments: newsId);
-        },
-        child: SizedBox(
-          height: 190,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            margin: const EdgeInsets.all(10),
-            color: Colors.grey,
-            elevation: 10,
-            child: Row(
-              children: [
-                cardImage,
-                Expanded(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      titleText,
-                      const SizedBox(height: 10),
-                      descriptionText,
-                    ],
-                  ),
+      child: Column(
+        children: [
+          timeText,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(CardItemDetail.routeName, arguments: newsId);
+            },
+            child: SizedBox(
+              height: 190,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
-              ],
+                margin: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  bottom: 20,
+                ),
+                color: Colors.black45,
+                elevation: 10,
+                child: Row(
+                  children: [
+                    cardImage,
+                    Expanded(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          titleText,
+                          const SizedBox(height: 10),
+                          descriptionText,
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -60,6 +60,8 @@ class NewsItems with ChangeNotifier {
     ),
   ];
 
+  late List<News> backUp = _items;
+
 // ~......................................
   List<News> get items {
     return [..._items];
@@ -88,4 +90,9 @@ class NewsItems with ChangeNotifier {
   News findById(String id) {
     return _items.firstWhere((element) => element.id == id);
   }
+
+  // void refreshItems() {
+  //   _items = backUp;
+  //   notifyListeners();
+  // }
 }

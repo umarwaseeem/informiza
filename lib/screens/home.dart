@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final newsData = Provider.of<NewsItems>(context).items;
+    final newsData = Provider.of<NewsItems>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -33,14 +33,14 @@ class Home extends StatelessWidget {
       ),
       drawer: const MyDrawer(),
       body: ListView.builder(
-        itemCount: newsData.length,
+        itemCount: newsData.items.length,
         itemBuilder: (context, index) {
           return CardItem(
-            time: newsData[index].time.toString(),
-            description: newsData[index].description.toString(),
-            newsId: newsData[index].id.toString(),
-            imagePath: newsData[index].path.toString(),
-            title: newsData[index].title.toString(),
+            time: newsData.items[index].time.toString(),
+            description: newsData.items[index].description.toString(),
+            newsId: newsData.items[index].id.toString(),
+            imagePath: newsData.items[index].path.toString(),
+            title: newsData.items[index].title.toString(),
           );
         },
       ),
