@@ -10,12 +10,20 @@ import 'screens/preferences_screen.dart';
 import 'screens/settings_screen.dart';
 
 void main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final savedThemeMode = await AdaptiveTheme.getThemeMode();
+  runApp(MyApp(savedThemeMode: savedThemeMode));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  final AdaptiveThemeMode? savedThemeMode;
+  const MyApp({Key? key, required this.savedThemeMode}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -26,7 +34,7 @@ class MyApp extends StatelessWidget {
       child: AdaptiveTheme(
         light: lightTheme,
         dark: darkTheme,
-        initial: AdaptiveThemeMode.light,
+        initial: widget.savedThemeMode ?? AdaptiveThemeMode.light,
         builder: (theme, lightTheme) => MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'INFORMIZA ',

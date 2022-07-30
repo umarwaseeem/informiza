@@ -16,6 +16,13 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
+  void initState() {
+    Provider.of<ThemeProvider>(context, listen: false)
+        .loadFromSharedPreferences();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
@@ -37,7 +44,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 primary: Colors.white,
               ),
               onPressed: () {
-                // save the filters
+                themeProvider.saveToSharedPreferences();
                 Navigator.of(context).pop();
               },
               child: Row(
@@ -58,15 +65,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 "Choose either system theme or your custom theme",
                 themeProvider.isSystemTheme,
                 true, (value) {
-              setState(() {
-                themeProvider.isSystemTheme = value;
-                if (themeProvider.isSystemTheme) {
-                  // isCustomTheme = false;
-                  AdaptiveTheme.of(context).setSystem();
-                } else if (!themeProvider.isSystemTheme) {
-                  setCustomTheme(themeProvider.isCustomTheme);
-                }
-              });
+              themeProvider.setIsSystem(value);
+              if (themeProvider.isSystemTheme) {
+                // isCustomTheme = false;
+                AdaptiveTheme.of(context).setSystem();
+              } else if (!themeProvider.isSystemTheme) {
+                setCustomTheme(themeProvider.isCustomTheme);
+              }
             }),
             settingTile(
                 "Dark Theme",
@@ -74,10 +79,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 "Choose light or dark theme",
                 themeProvider.isCustomTheme,
                 !themeProvider.isSystemTheme, (value) {
-              setState(() {
-                themeProvider.isCustomTheme = value;
-                setCustomTheme(themeProvider.isCustomTheme);
-              });
+              themeProvider.setIsCustom(value);
+              setCustomTheme(themeProvider.isCustomTheme);
             }),
           ],
         ),
