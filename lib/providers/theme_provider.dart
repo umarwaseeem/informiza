@@ -31,8 +31,6 @@ class ThemeProvider with ChangeNotifier {
     saveToSharedPreferences();
     notifyListeners();
   }
-
-
 }
 
 var lightTheme = ThemeData(
@@ -40,7 +38,7 @@ var lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.green[100],
   appBarTheme: AppBarTheme(color: Colors.green[900]),
   drawerTheme: DrawerThemeData(
-    backgroundColor: Colors.green[400],
+    backgroundColor: Colors.green[200],
     elevation: 30,
   ),
 );

@@ -21,25 +21,43 @@ class _PreferenceChipState extends State<PreferenceChip>
       onTap: () {
         setState(() => selected = !selected);
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: AnimatedContainer(
-          duration: const Duration(seconds: 200),
-          child: Chip(
-            label: Text(widget.title),
-            elevation: selected ? 0 : 5,
-            backgroundColor: selected ? Colors.green : Colors.white,
-            avatar: Icon(
-              widget.icon,
-              color: selected ? Colors.white : Colors.black,
-            ),
-            shadowColor: Colors.green,
-            labelStyle: TextStyle(
-              color: selected ? Colors.white : Colors.black,
-              fontSize: 16,
-            ),
+      child: AnimatedContainer(
+        margin: const EdgeInsets.all(10),
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeInOutCirc,
+        // width: 200,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              selected ? Colors.green : Colors.white54,
+              selected ? Colors.green.shade900 : Colors.white24,
+              // selected ? Colors.green.shade900 : Colors.black54,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
+          borderRadius: BorderRadius.circular(20),
+          // color: selected
+          //     ? Theme.of(context).appBarTheme.backgroundColor
+          //     : Colors.white38,
         ),
+        child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                Icon(
+                  widget.icon,
+                  color: selected ? Colors.white : Colors.black,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  widget.title,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: selected ? Colors.white : Colors.black),
+                ),
+              ],
+            )),
       ),
     );
   }
@@ -54,5 +72,6 @@ List<PreferenceChip> getChips() {
     const PreferenceChip(title: "Automotive Industry", icon: Icons.local_taxi),
     const PreferenceChip(title: "Politics", icon: Icons.person),
     const PreferenceChip(title: "Life Hacks", icon: Icons.home),
+    const PreferenceChip(title: "Climate", icon: Icons.wb_sunny),
   ];
 }

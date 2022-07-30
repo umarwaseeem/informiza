@@ -4,9 +4,14 @@ import 'package:news_informiza/widgets/drawer_item.dart';
 
 import '../screens/preferences_screen.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,16 +23,21 @@ class MyDrawer extends StatelessWidget {
             width: double.infinity,
             color: Colors.black38,
             child: Row(
-              children: const [
+              children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    radius: 30,
+                    radius: 40,
                     backgroundColor: Colors.white,
+                    child: ClipOval(
+                      child: Image.network(
+                        "https://avatars.githubusercontent.com/u/76011160?v=4",
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(width: 10),
-                Text(
+                const SizedBox(width: 10),
+                const Text(
                   "User Name",
                   style: TextStyle(fontSize: 20),
                 ),
