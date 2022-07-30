@@ -87,13 +87,13 @@ class CardItemDetail extends StatelessWidget {
                 Container(
                   padding: const EdgeInsetsDirectional.all(10),
                   height: 500,
-                  color: Colors.amberAccent,
+                  // color: Colors.amberAccent,
                   child: newsDescription,
                 ),
                 Container(
                   padding: const EdgeInsetsDirectional.all(10),
                   height: 500,
-                  color: Colors.grey,
+                  // color: Colors.grey,
                 ),
               ],
             ),

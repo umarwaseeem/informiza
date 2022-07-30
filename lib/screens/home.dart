@@ -1,3 +1,4 @@
+// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:news_informiza/providers/news.dart';
 import 'package:provider/provider.dart';

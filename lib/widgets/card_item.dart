@@ -20,35 +20,45 @@ class CardItem extends StatelessWidget {
     required this.time,
   }) : super(key: key);
 
+  // final double _sigmaX = 0.0; // from 0-10
+  // final double _sigmaY = 0.0; // from 0-10
+  // final double _opacity = 0.1; // from 0-1.0
+
   @override
   Widget build(BuildContext context) {
     final newsData = Provider.of<NewsItems>(context, listen: false);
 
     var cardImage = SizedBox(
       height: double.infinity,
-      width: 200,
+      width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(4.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: Hero(
             tag: newsId,
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
+            child: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.4), BlendMode.dstATop),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
       ),
     );
 
-    var titleText = Text(
-      title,
-      style: const TextStyle(
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-    );
+    var titleText = Padding(
+        padding: const EdgeInsets.only(left: 5),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
+        ));
 
     var descriptionText = Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -122,17 +132,21 @@ class CardItem extends StatelessWidget {
                 ),
                 color: Colors.black45,
                 elevation: 10,
-                child: Row(
+                child: Stack(
                   children: [
                     cardImage,
                     Expanded(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 10),
-                          titleText,
-                          const SizedBox(height: 10),
-                          descriptionText,
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 10),
+                            titleText,
+                            const SizedBox(height: 10),
+                            descriptionText,
+                          ],
+                        ),
                       ),
                     ),
                   ],
