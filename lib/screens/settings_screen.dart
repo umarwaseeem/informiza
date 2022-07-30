@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +15,18 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool isSystemTheme = false;
-  bool isCustomTheme = false;
-
   @override
   Widget build(BuildContext context) {
-    final themeData = Provider.of<ThemeProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    void setCustomTheme(bool customTheme) {
+      if (customTheme == true) {
+        AdaptiveTheme.of(context).setDark();
+      } else {
+        AdaptiveTheme.of(context).setLight();
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -34,7 +41,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Navigator.of(context).pop();
               },
               child: Row(
-                children: const [Text("Done"), Icon(Icons.done_rounded)],
+                children: const [
+                  Text("Save"),
+                  SizedBox(width: 10),
+                  Icon(Icons.save_as_sharp)
+                ],
               ),
             )
           ],
@@ -45,21 +56,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 "System Theme",
                 "Custom Theme",
                 "Choose either system theme or your custom theme",
-                isSystemTheme,
+                themeProvider.isSystemTheme,
                 true, (value) {
               setState(() {
-                isSystemTheme = value;
+                themeProvider.isSystemTheme = value;
+                if (themeProvider.isSystemTheme) {
+                  // isCustomTheme = false;
+                  AdaptiveTheme.of(context).setSystem();
+                } else if (!themeProvider.isSystemTheme) {
+                  setCustomTheme(themeProvider.isCustomTheme);
+                }
               });
             }),
             settingTile(
                 "Dark Theme",
                 "Light Theme",
                 "Choose light or dark theme",
-                isCustomTheme,
-                !isSystemTheme, (value) {
+                themeProvider.isCustomTheme,
+                !themeProvider.isSystemTheme, (value) {
               setState(() {
-                isCustomTheme = value;
-                themeData.toggleTheme(value);
+                themeProvider.isCustomTheme = value;
+                setCustomTheme(themeProvider.isCustomTheme);
               });
             }),
           ],
