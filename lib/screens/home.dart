@@ -23,6 +23,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Daily Feed"),
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.light_mode_outlined))
+        ],
       ),
       drawer: const MyDrawer(),
       body: ListView.builder(

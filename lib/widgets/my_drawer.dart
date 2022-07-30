@@ -10,11 +10,11 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.blueGrey[700],
+      // backgroundColor: Colors.blueGrey[700],
       child: Column(
         children: [
           Container(
-            height: 180,
+            height: 220,
             width: double.infinity,
             color: Colors.black38,
             child: Row(
